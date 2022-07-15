@@ -13,6 +13,7 @@ const JUMP_BUFFER_TIME_SECS := 0.12 # Rougly 7 frames at 60 FPS.
 const JUMP_CUT_FORCE := 200
 # Coyote time https://developer.amazon.com/blogs/appstore/post/9d2094ed-53cb-4a3a-a5cf-c7f34bca6cd3/coding-imprecise-controls-to-make-them-feel-more-precise
 const COYOTE_TIME_SECS := 0.1
+const ATTACK_COOLDOWN := 0.2
 
 const RUN_MAX_SPEED: float = 300.0
 
@@ -23,7 +24,6 @@ enum MOVE_DIRECTION {
 }
 # Consts end
 
-
 export var can_player_jump := true
 export var can_player_interact := true
 
@@ -31,18 +31,31 @@ onready var _state_machine = $StateMachine
 
 var _velocity := Vector2.ZERO
 
+var last_attack_time := 1.0
+
 
 func _ready():
 	assert(_state_machine != null)
 
 
 func _physics_process(delta: float):
+	if Input.is_action_pressed("attack") and last_attack_time > ATTACK_COOLDOWN:
+		fire_projecile()
+	last_attack_time += delta
 	_state_machine.update(delta)
 	$StatusLabelDebug.text = "%s\n x: %3.2f  y: %3.2f" % [
 			_state_machine.State.keys()[_state_machine.current_state],
 			_velocity.x,
 			_velocity.y
 	]
+
+
+func fire_projecile():
+	var projectile = preload("res://scenes/projectiles/testprojectile.tscn").instance()
+	last_attack_time = projectile.init(_velocity, global_position,
+		global_position.direction_to(get_global_mouse_position()).angle())
+	get_tree().current_scene.add_child(projectile)
+	print("-------------------------\nFired projectile\n-------------------------")
 
 
 func move_player(_delta: float):
