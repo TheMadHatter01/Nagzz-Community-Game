@@ -1,9 +1,9 @@
 class_name Projectile
 extends Area2D
 
-
 const SPEED := 1500.0
 
+export var damage: int = 10
 
 var _velocity: Vector2
 var _initial_velocity: Vector2
