@@ -16,10 +16,11 @@ const COYOTE_TIME_SECS := 0.1
 
 const RUN_MAX_SPEED: float = 300.0
 
+
 enum MOVE_DIRECTION {
 	LEFT = -1,
 	NONE = 0,
-	RIGHT = 1
+	RIGHT = 1,
 }
 # Consts end
 
@@ -64,7 +65,7 @@ func air_move(delta: float):
 
 func apply_air_friction(delta: float):
 	var movement_direction = sign(velocity.x)
-	velocity.x = abs(velocity.x) - AIR_FRICTION*delta
+	velocity.x = abs(velocity.x) - AIR_FRICTION * delta
 	velocity.x = max(velocity.x, 0)
 	velocity.x *= movement_direction
 
