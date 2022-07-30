@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/weapons/components/multipliers/reload_speed_mult/reload_speed_mult.gd" type="Script" id=1]
+
+[node name="ReloadSpeedMult" type="Node"]
+script = ExtResource( 1 )

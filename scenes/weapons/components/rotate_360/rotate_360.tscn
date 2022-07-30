@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/weapons/components/rotate_360/rotate_360.gd" type="Script" id=1]
+
+[node name="Rotate360" type="Node"]
+script = ExtResource( 1 )

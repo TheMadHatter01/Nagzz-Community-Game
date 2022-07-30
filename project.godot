@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/player/base_state.gd"
 }, {
-"base": "Object",
-"class": "BaseWeapon",
-"language": "GDScript",
-"path": "res://scenes/weapons/base_weapon.gd"
-}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -56,7 +51,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaseState": "",
-"BaseWeapon": "",
 "GitAPI": "",
 "Idle": "",
 "InAir": "",
