@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/player/on_ground.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://scenes/player/in_air.gd" type="Script" id=10]
 [ext_resource path="res://scenes/player/weapon.gd" type="Script" id=11]
 [ext_resource path="res://scenes/player/reload_anim.gd" type="Script" id=12]
-[ext_resource path="res://scenes/player/HitBox.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/player/hit_box.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 24, 31.5 )
@@ -129,7 +129,5 @@ polygon = PoolVector2Array( 0, 0, 4, 0, 4, 6.85714, 0, 6.85714 )
 [connection signal="tween_completed" from="ReloadIndicator/ProgressTween" to="ReloadIndicator" method="_on_ProgressTween_tween_completed"]
 [connection signal="tween_started" from="ReloadIndicator/ProgressTween" to="ReloadIndicator" method="_on_ProgressTween_tween_started"]
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_HitBox_area_entered"]
-[connection signal="area_entered" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_entered"]
-[connection signal="area_exited" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_exited"]
 
 [editable path="HitBox"]
