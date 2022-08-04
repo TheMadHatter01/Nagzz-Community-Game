@@ -1,6 +1,12 @@
 class_name Player
 extends KinematicBody2D
 
+enum MoveDirection {
+	LEFT = -1,
+	NONE = 0,
+	RIGHT = 1,
+}
+
 # Consts
 const GRAVITY := 1650.0
 const JUMP_FORCE := Vector2(50, -850)
@@ -11,21 +17,17 @@ const JUMP_FALL_MULTIPLIER: float = 1.3
 # Jump buffer time, in seconds.
 const JUMP_BUFFER_TIME_SECS := 0.12  # Rougly 7 frames at 60 FPS.
 const JUMP_CUT_FORCE := 200
+# gdlint: ignore=max-line-length
 # Coyote time https://developer.amazon.com/blogs/appstore/post/9d2094ed-53cb-4a3a-a5cf-c7f34bca6cd3/coding-imprecise-controls-to-make-them-feel-more-precise
 const COYOTE_TIME_SECS := 0.1
 
 const RUN_MAX_SPEED: float = 300.0
 
-enum MOVE_DIRECTION {
-	LEFT = -1,
-	NONE = 0,
-	RIGHT = 1,
-}
 # Consts end
 
-onready var _state_machine = $StateMachine
-
 var velocity := Vector2.ZERO
+
+onready var _state_machine = $StateMachine
 
 
 func _ready():
@@ -69,7 +71,7 @@ func can_jump() -> bool:
 func get_move_input_direction() -> int:
 	var move_direction := 0
 	if Input.is_action_pressed("move_right"):
-		move_direction += MOVE_DIRECTION.RIGHT
+		move_direction += MoveDirection.RIGHT
 	if Input.is_action_pressed("move_left"):
-		move_direction += MOVE_DIRECTION.LEFT
+		move_direction += MoveDirection.LEFT
 	return move_direction

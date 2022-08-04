@@ -4,8 +4,10 @@ extends Control
 signal powerup_selected(powerup_props)
 
 const PowerupCard := preload("powerup_card.gd")
+# gdlint: ignore=constant-name
 const PowerupCardProps := PowerupCard.PowerupCardProps
 
+# gdlint: ignore=class-variable-name
 var PowerupVariant = PowerupVariantDatabase.PowerupVariant
 
 onready var _cards_container := find_node("CardsContainer") as HBoxContainer

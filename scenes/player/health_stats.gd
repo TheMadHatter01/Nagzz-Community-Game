@@ -1,10 +1,8 @@
 extends Node
 
-
 signal max_health_changed(new_max_health)
 signal health_changed(new_health)
 signal no_health
-
 
 export(int) var max_health = 100 setget set_max_health
 onready var health = max_health setget set_health

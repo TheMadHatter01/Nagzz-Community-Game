@@ -3,6 +3,12 @@ extends ColorRect
 # card_props: PowerupCardProps
 signal selected(card_props)
 
+var props: PowerupCardProps
+
+onready var _name_node := find_node("Name") as RichTextLabel
+onready var _image_node := find_node("Image") as TextureRect
+onready var _description_node := find_node("Description") as RichTextLabel
+
 
 class PowerupCardProps:
 	var name: String
@@ -24,13 +30,6 @@ class PowerupCardProps:
 		texture = _texture
 		variant = _variant
 		on_selected_callback = _on_selected_callback
-
-
-var props: PowerupCardProps
-
-onready var _name_node := find_node("Name") as RichTextLabel
-onready var _image_node := find_node("Image") as TextureRect
-onready var _description_node := find_node("Description") as RichTextLabel
 
 
 func _ready():

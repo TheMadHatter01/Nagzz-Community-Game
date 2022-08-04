@@ -1,0 +1,40 @@
+name: GDScript CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  gdlint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+      
+    - name: Setup gdtools
+      run: pip3 install 'gdtoolkit==3.*'
+    
+    - name: Lint
+      run: gdlint $(find -not -path "./addons/*" -name "*.gd")
+  
+  gdformat:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+      
+    - name: Setup gdtools
+      run: pip3 install 'gdtoolkit==3.*'
+    
+    - name: Format check
+      run: gdformat -d $(find -not -path "./addons/*" -name "*.gd")
