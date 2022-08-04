@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/player/on_ground.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scenes/player/base_state.gd" type="Script" id=6]
 [ext_resource path="res://scenes/player/interaction_box.gd" type="Script" id=7]
 [ext_resource path="res://scenes/powerup_select/powerup_select.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/weapons/pistol.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/player/in_air.gd" type="Script" id=10]
 [ext_resource path="res://scenes/player/weapon.gd" type="Script" id=11]
 [ext_resource path="res://scenes/player/reload_anim.gd" type="Script" id=12]
@@ -45,8 +44,8 @@ shape = SubResource( 7 )
 
 [node name="InteractionBox" type="Area2D" parent="."]
 visible = false
-collision_layer = 4
-collision_mask = 4
+collision_layer = 6
+collision_mask = 6
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
@@ -82,8 +81,6 @@ default_color = Color( 0.733333, 1, 0.4, 1 )
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource( 11 )
-
-[node name="Pistol" parent="Weapon" instance=ExtResource( 9 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1.1, 1 )
@@ -124,10 +121,10 @@ polygon = PoolVector2Array( 0, 0, 4, 0, 4, 6.85714, 0, 6.85714 )
 
 [node name="ProgressTween" type="Tween" parent="ReloadIndicator"]
 
+[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_HitBox_area_entered"]
 [connection signal="area_entered" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_entered"]
 [connection signal="area_exited" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_exited"]
 [connection signal="tween_completed" from="ReloadIndicator/ProgressTween" to="ReloadIndicator" method="_on_ProgressTween_tween_completed"]
 [connection signal="tween_started" from="ReloadIndicator/ProgressTween" to="ReloadIndicator" method="_on_ProgressTween_tween_started"]
-[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_HitBox_area_entered"]
 
 [editable path="HitBox"]

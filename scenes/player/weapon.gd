@@ -3,9 +3,9 @@ extends Node2D
 var current_weapon: Node2D = null
 
 
-func pickup_weapon(weapon_scene_path: String):
+func pickup_weapon(weapon_scene_path: PackedScene):
 	clear_weapon()
-	current_weapon = load(weapon_scene_path).instance() as Node2D
+	current_weapon = weapon_scene_path.instance()
 	self.add_child(current_weapon)
 	assert(current_weapon != null)
 

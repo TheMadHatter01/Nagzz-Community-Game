@@ -12,11 +12,9 @@ func _process(_delta):
 
 
 func _interact():
-	print("interaction started")
-
 	var closest = _get_closest_interactable()
-
 	if closest != null:
+		print("Interacting.")
 		closest.emit_signal("interacted", _player)
 
 

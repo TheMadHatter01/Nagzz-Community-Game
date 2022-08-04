@@ -3,13 +3,15 @@
 [ext_resource path="res://scenes/room_switcher/room_switcher.gd" type="Script" id=1]
 [ext_resource path="res://scenes/interactable/interactable.tscn" type="PackedScene" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 40, 40 )
 
 [node name="RoomSwitcher" type="Node2D"]
 script = ExtResource( 1 )
-shape = SubResource( 1 )
 
 [node name="Interactable" parent="." instance=ExtResource( 2 )]
-shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource( 2 )
 
 [connection signal="interacted" from="Interactable" to="." method="_on_Interactable_interacted"]

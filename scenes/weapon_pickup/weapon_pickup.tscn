@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/weapon_pickup/weapon_pickup.gd" type="Script" id=1]
+[ext_resource path="res://scenes/interactable/interactable.gd" type="Script" id=2]
+[ext_resource path="res://assets/placeholder/dummy_gun.png" type="Texture" id=3]
+[ext_resource path="res://scenes/weapons/pistol.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 30, 40 )
+
+[node name="WeaponPickup" type="Node2D"]
+position = Vector2( 126, 200 )
+z_index = -2
+script = ExtResource( 1 )
+weapon_scene = ExtResource( 4 )
+weapon_texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource( 3 )
+
+[connection signal="interacted" from="Interactable" to="." method="_on_Interactable_interacted"]
