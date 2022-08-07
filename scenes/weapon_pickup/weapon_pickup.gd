@@ -1,5 +1,7 @@
 extends Node2D
 
+const Weapon := preload("res://scenes/player/weapon.gd")
+
 const WEAPON_PICKUP_GROUP := "weapon_pickup"
 
 export var weapon_scene: PackedScene = null
@@ -27,9 +29,13 @@ func set_weapon(weapon: PackedScene, texture: Texture):
 
 
 func _on_Interactable_interacted(player: Player) -> void:
+	if not $Sprite.visible:
+		return
+
 	print("Interacted with weapon pickup.")
-	var weapon = player.get_node("Weapon")
+	var weapon := player.get_node(@"Weapon") as Weapon
 	assert(weapon)
+
 	weapon.pickup_weapon(weapon_scene)
 
 	for weapon_pickup in get_tree().get_nodes_in_group(WEAPON_PICKUP_GROUP):

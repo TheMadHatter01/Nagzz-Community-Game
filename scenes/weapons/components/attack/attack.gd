@@ -66,7 +66,7 @@ func _get_attack_point() -> Vector2:
 
 
 func _get_attack_speed():
-	var attack_speed_mult_node := _weapon.get_node("FireRateMult") as FireRateMult
+	var attack_speed_mult_node := _weapon.get_node(@"FireRateMult") as FireRateMult
 
 	var attack_speed_mult := (
 		attack_speed_mult_node.fire_rate_mult

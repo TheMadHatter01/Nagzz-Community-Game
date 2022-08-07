@@ -22,6 +22,7 @@ const JUMP_CUT_FORCE := 200
 const COYOTE_TIME_SECS := 0.1
 
 const RUN_MAX_SPEED: float = 300.0
+const MAX_Y_VELOCITY := 2500.0
 
 # Consts end
 
@@ -44,11 +45,12 @@ func move_player(_delta: float):
 
 
 func apply_gravity(delta: float, gravity_mult: float = 1.0):
-	velocity.y += GRAVITY * gravity_mult * delta
+	velocity.y = min(GRAVITY * gravity_mult * delta + velocity.y, MAX_Y_VELOCITY)
 
 
 func add_force(force: Vector2):
-	velocity += force
+	velocity.x += force.x
+	velocity.y = min(force.y + velocity.y, MAX_Y_VELOCITY)
 
 
 func air_move(delta: float):

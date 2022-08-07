@@ -36,6 +36,12 @@ func _physics_process(_delta):
 		reload()
 
 
+func _notification(what):
+	# _reload_indicator could be invalid when quiting the game
+	if what == NOTIFICATION_PREDELETE and is_instance_valid(_reload_indicator):
+		_reload_indicator.stop_reload()
+
+
 func reload():
 	if reloading:
 		return
