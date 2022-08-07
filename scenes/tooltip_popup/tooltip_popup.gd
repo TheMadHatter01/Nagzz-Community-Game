@@ -5,7 +5,7 @@ export var bbcode_text := "" setget set_bbcode_text
 
 var _last_bbcode_text := ""
 
-onready var _label := get_node("PanelContainer/RichTextLabel") as RichTextLabel
+onready var _label := get_node("%RichTextLabel") as RichTextLabel
 
 
 func _ready():

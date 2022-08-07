@@ -5,9 +5,9 @@ signal selected(card_props)
 
 var props: PowerupCardProps
 
-onready var _name_node := find_node("Name") as RichTextLabel
-onready var _image_node := find_node("Image") as TextureRect
-onready var _description_node := find_node("Description") as RichTextLabel
+onready var _name_node := get_node("%Name") as RichTextLabel
+onready var _image_node := get_node("%Image") as TextureRect
+onready var _description_node := get_node("%Description") as RichTextLabel
 
 
 class PowerupCardProps:

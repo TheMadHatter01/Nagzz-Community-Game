@@ -13,9 +13,9 @@ var reloading := false
 
 onready var _player := find_parent("Player") as Player
 onready var _weapon := get_parent() as Node2D
-onready var _ammo := _weapon.find_node("Ammo") as Ammo
-onready var _reload_indicator := _player.find_node("ReloadIndicator") as ReloadAnim
-onready var _reload_speed_mult := _weapon.find_node("ReloadSpeedMult") as ReloadSpeedMult
+onready var _ammo := _weapon.get_node("Ammo") as Ammo
+onready var _reload_indicator := _player.get_node("ReloadIndicator") as ReloadAnim
+onready var _reload_speed_mult := _weapon.get_node("ReloadSpeedMult") as ReloadSpeedMult
 
 
 func _ready():

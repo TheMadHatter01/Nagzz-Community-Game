@@ -3,13 +3,11 @@ extends Node
 var _attack_point: Position2D = null
 
 onready var _weapon := get_parent() as Node2D
-onready var _sprite := _weapon.find_node("AnimatedSprite")
 onready var _player := find_parent("Player")
 
 
 func _ready():
 	assert(_weapon != null)
-	assert(_sprite != null)
 	assert(_player != null)
 
 

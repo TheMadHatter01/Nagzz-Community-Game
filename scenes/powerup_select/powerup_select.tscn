@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="CardsContainer" type="HBoxContainer" parent="Background/CenterContainer"]
+unique_name_in_owner = true
 margin_left = 512.0
 margin_top = 300.0
 margin_right = 512.0

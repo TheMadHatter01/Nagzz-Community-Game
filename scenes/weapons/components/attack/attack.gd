@@ -14,8 +14,8 @@ onready var _attack_point := $"../AttackPoint" as Position2D
 onready var _player := find_parent("Player") as Player
 onready var _sprite := $"../AnimatedSprite" as AnimatedSprite
 onready var _weapon := self.get_parent()
-onready var _ammo := _weapon.find_node("Ammo") as Ammo
-onready var _reload := _weapon.find_node("Reload") as Reload
+onready var _ammo := _weapon.get_node("Ammo") as Ammo
+onready var _reload := _weapon.get_node("Reload") as Reload
 
 
 func _ready():
@@ -66,7 +66,7 @@ func _get_attack_point() -> Vector2:
 
 
 func _get_attack_speed():
-	var attack_speed_mult_node := _weapon.find_node("FireRateMult") as FireRateMult
+	var attack_speed_mult_node := _weapon.get_node("FireRateMult") as FireRateMult
 
 	var attack_speed_mult := (
 		attack_speed_mult_node.fire_rate_mult

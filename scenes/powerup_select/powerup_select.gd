@@ -10,7 +10,7 @@ const PowerupCardProps := PowerupCard.PowerupCardProps
 # gdlint: ignore=class-variable-name
 var PowerupVariant = PowerupVariantDatabase.PowerupVariant
 
-onready var _cards_container := find_node("CardsContainer") as HBoxContainer
+onready var _cards_container := get_node("%CardsContainer") as HBoxContainer
 onready var _player := find_parent("Player") as Player
 
 
