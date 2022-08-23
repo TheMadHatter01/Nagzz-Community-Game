@@ -6,7 +6,9 @@ func _ready():
 
 
 func _on_Start_pressed():
-	get_tree().change_scene("res://scenes/test_scene.tscn")
+	var err = get_tree().change_scene("res://scenes/test_scene.tscn")
+	if err != OK:
+		push_error("Failed to change scene")
 
 
 func _on_Options_pressed():
