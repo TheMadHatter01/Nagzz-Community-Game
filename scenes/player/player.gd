@@ -8,8 +8,8 @@ enum MoveDirection {
 }
 
 # Consts
-const GRAVITY := 1650.0
-const JUMP_FORCE := Vector2(50, -850)
+const GRAVITY := 1400.0
+const JUMP_FORCE := Vector2(50, -550)
 const AIR_FRICTION := 250.0
 const AIR_MOVE_ACCELERATION := 625.0
 # So that the player falls faster than accelerates upwards.
@@ -28,7 +28,8 @@ const MAX_Y_VELOCITY := 2500.0
 
 var velocity := Vector2.ZERO
 
-onready var _state_machine = $StateMachine
+onready var _state_machine := $StateMachine
+onready var _sprite: AnimatedSprite = $AnimatedSprite
 
 
 func _ready():
@@ -37,6 +38,7 @@ func _ready():
 
 func _physics_process(delta: float):
 	_state_machine.update(delta)
+	_sprite.update_animation()
 
 
 func move_player(_delta: float):

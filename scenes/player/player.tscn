@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/player/on_ground.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
@@ -8,15 +8,74 @@
 [ext_resource path="res://scenes/player/base_state.gd" type="Script" id=6]
 [ext_resource path="res://scenes/player/interaction_box.gd" type="Script" id=7]
 [ext_resource path="res://scenes/powerup_select/powerup_select.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/player/nag_idle_sheet.png" type="Texture" id=9]
 [ext_resource path="res://scenes/player/in_air.gd" type="Script" id=10]
 [ext_resource path="res://scenes/player/weapon.gd" type="Script" id=11]
 [ext_resource path="res://scenes/player/reload_anim.gd" type="Script" id=12]
 [ext_resource path="res://scenes/player/hit_box.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/player/player_animation.gd" type="Script" id=14]
+[ext_resource path="res://assets/player/nag_run_sheet.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 24, 31.5 )
+extents = Vector2( 19, 26.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 9 )
+region = Rect2( 30, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 9 )
+region = Rect2( 60, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 9 )
+region = Rect2( 90, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 9 )
+region = Rect2( 120, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 9 )
+region = Rect2( 150, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 15 )
+region = Rect2( 30, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 15 )
+region = Rect2( 60, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 15 )
+region = Rect2( 90, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 15 )
+region = Rect2( 120, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 15 )
+region = Rect2( 150, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 15 )
+region = Rect2( 180, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 15 )
+region = Rect2( 210, 0, 30, 42 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -24,10 +83,20 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": true,
+"name": "run",
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 22.2727, 32 )
+extents = Vector2( 11.3636, 20 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -69,8 +138,9 @@ script = ExtResource( 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.5, 0 )
-scale = Vector2( 0.765625, 1 )
 frames = SubResource( 4 )
+animation = "run"
+script = ExtResource( 14 )
 
 [node name="VelocityDirectionDebugArrow" type="Line2D" parent="."]
 visible = false
@@ -83,11 +153,15 @@ default_color = Color( 0.733333, 1, 0.4, 1 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0 )
 scale = Vector2( 1.1, 1 )
 shape = SubResource( 6 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.8, 0.8 )
+smoothing_enabled = true
+smoothing_speed = 15.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -96,6 +170,7 @@ pause_mode = 2
 visible = false
 
 [node name="ReloadIndicator" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 12 )
 
 [node name="LeftBar" type="Polygon2D" parent="ReloadIndicator"]
