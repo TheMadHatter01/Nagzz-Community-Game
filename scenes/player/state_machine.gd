@@ -5,6 +5,7 @@ enum State {
 	ON_GROUND,
 	JUMP,
 	IN_AIR,
+	DASH,
 }
 
 var current_state: int = State.ON_GROUND
@@ -13,6 +14,7 @@ onready var _states: Dictionary = {
 	State.ON_GROUND: $BaseState/OnGround,
 	State.JUMP: $BaseState/Jump,
 	State.IN_AIR: $BaseState/InAir,
+	State.DASH: $BaseState/Dash,
 }
 
 onready var _player := self.get_parent() as Player

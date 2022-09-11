@@ -15,6 +15,7 @@
 [ext_resource path="res://scenes/player/hit_box.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/player/player_animation.gd" type="Script" id=14]
 [ext_resource path="res://assets/player/nag_run_sheet.png" type="Texture" id=15]
+[ext_resource path="res://scenes/player/dash.gd" type="Script" id=16]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 19, 26.5 )
@@ -136,6 +137,12 @@ script = ExtResource( 4 )
 [node name="InAir" type="Node" parent="StateMachine/BaseState"]
 script = ExtResource( 10 )
 
+[node name="Dash" type="Node" parent="StateMachine/BaseState"]
+script = ExtResource( 16 )
+
+[node name="DashTimer" type="Timer" parent="StateMachine/BaseState/Dash"]
+one_shot = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.5, 0 )
 frames = SubResource( 4 )
@@ -199,6 +206,8 @@ polygon = PoolVector2Array( 0, 0, 4, 0, 4, 6.85714, 0, 6.85714 )
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_HitBox_area_entered"]
 [connection signal="area_entered" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_entered"]
 [connection signal="area_exited" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_exited"]
+[connection signal="dash_ended" from="StateMachine/BaseState/Dash" to="." method="_on_Dash_dash_ended"]
+[connection signal="timeout" from="StateMachine/BaseState/Dash/DashTimer" to="StateMachine/BaseState/Dash" method="_on_DashTimer_timeout"]
 [connection signal="tween_completed" from="ReloadIndicator/ProgressTween" to="ReloadIndicator" method="_on_ProgressTween_tween_completed"]
 [connection signal="tween_started" from="ReloadIndicator/ProgressTween" to="ReloadIndicator" method="_on_ProgressTween_tween_started"]
 

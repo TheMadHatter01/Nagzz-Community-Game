@@ -23,10 +23,15 @@ const COYOTE_TIME_SECS := 0.1
 
 const RUN_MAX_SPEED: float = 300.0
 const MAX_Y_VELOCITY := 2500.0
+#Dash consts
+const DASH_SPEED = 1000
+const DASH_DURATION = 0.3
 
 # Consts end
 
 var velocity := Vector2.ZERO
+var dash_delay = 1
+var can_dash = true
 
 onready var _state_machine := $StateMachine
 onready var _sprite: AnimatedSprite = $AnimatedSprite
@@ -79,3 +84,8 @@ func get_move_input_direction() -> int:
 	if Input.is_action_pressed("move_left"):
 		move_direction += MoveDirection.LEFT
 	return move_direction
+
+
+func _on_Dash_dash_ended():
+	yield(get_tree().create_timer(dash_delay), "timeout")
+	can_dash = true
