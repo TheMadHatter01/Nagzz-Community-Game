@@ -6,6 +6,7 @@ func _ready():
 
 
 func _on_Start_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var err = get_tree().change_scene("res://scenes/hub/hub.tscn")
 	if err != OK:
 		push_error("Failed to change scene to hub.")
