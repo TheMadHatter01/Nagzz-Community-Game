@@ -1,7 +1,6 @@
 extends ColorRect
 
-# card_props: PowerupCardProps
-signal selected(card_props)
+signal selected(variant)
 
 var props: PowerupCardProps
 
@@ -14,22 +13,13 @@ class PowerupCardProps:
 	var name: String
 	var description: String
 	var texture: Texture
-	# variant: PowerupVariant
 	var variant: int
-	var on_selected_callback: FuncRef
 
-	func _init(
-		_name: String,
-		_description: String,
-		_texture: Texture,
-		_variant: int,
-		_on_selected_callback: FuncRef
-	):
+	func _init(_name: String, _description: String, _texture: Texture, _variant: int):
 		name = _name
 		description = _description
 		texture = _texture
 		variant = _variant
-		on_selected_callback = _on_selected_callback
 
 
 func _ready():
@@ -44,4 +34,4 @@ func _ready():
 
 
 func _on_SelectButton_pressed():
-	emit_signal("selected", props)
+	emit_signal("selected", props.variant)

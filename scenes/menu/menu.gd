@@ -22,3 +22,9 @@ func _on_Credits_pressed():
 
 func _on_Quit_pressed():
 	get_tree().quit()
+
+
+func _on_TestScene_pressed() -> void:
+	var err = get_tree().change_scene("res://scenes/test_scene.tscn")
+	if err != OK:
+		push_error("Failed to change scene to test scene.")

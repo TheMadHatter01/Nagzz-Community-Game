@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/player/on_ground.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/player/player_animation.gd" type="Script" id=14]
 [ext_resource path="res://assets/player/nag_run_sheet.png" type="Texture" id=15]
 [ext_resource path="res://scenes/player/dash.gd" type="Script" id=16]
+[ext_resource path="res://scenes/player/powerup_manager.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 19, 26.5 )
@@ -165,6 +166,7 @@ scale = Vector2( 1.1, 1 )
 shape = SubResource( 6 )
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 0, -100 )
 current = true
 zoom = Vector2( 0.8, 0.8 )
 smoothing_enabled = true
@@ -202,6 +204,9 @@ color = Color( 0.745098, 0.745098, 0.745098, 1 )
 polygon = PoolVector2Array( 0, 0, 4, 0, 4, 6.85714, 0, 6.85714 )
 
 [node name="ProgressTween" type="Tween" parent="ReloadIndicator"]
+
+[node name="PowerupManager" type="Node" parent="."]
+script = ExtResource( 17 )
 
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_HitBox_area_entered"]
 [connection signal="area_entered" from="InteractionBox" to="InteractionBox" method="_on_InteractionBox_area_entered"]

@@ -50,7 +50,15 @@ margin_right = 201.0
 margin_bottom = 110.0
 text = "Quit"
 
+[node name="TestScene" type="Button" parent="."]
+margin_left = 55.0
+margin_top = 463.0
+margin_right = 173.0
+margin_bottom = 500.0
+text = "Test scene"
+
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="TestScene" to="." method="_on_TestScene_pressed"]

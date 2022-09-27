@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/areas/area_door.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/interactable/interactable.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 25 )
+
+[node name="AreaDoor" type="Node2D"]
+position = Vector2( 579, 314 )
+script = ExtResource( 1 )
+area_name = "test_area"
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.390625, 0.78125 )
+texture = ExtResource( 2 )
+
+[node name="Interactable" parent="." instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -30.0
+margin_top = -43.0
+margin_right = 30.0
+margin_bottom = -29.0
+align = 1
+valign = 1

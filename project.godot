@@ -54,11 +54,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/player/player.gd"
 }, {
-"base": "Area2D",
-"class": "Projectile",
-"language": "GDScript",
-"path": "res://scenes/projectiles/testprojectile.gd"
-}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
@@ -74,7 +69,6 @@ _global_script_class_icons={
 "InAir": "",
 "Jump": "",
 "Player": "",
-"Projectile": "",
 "StateMachine": ""
 }
 
@@ -86,7 +80,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PowerupVariantDatabase="*res://scenes/powerup_select/powerup_variant_database.gd"
+PowerupDatabase="*res://scenes/powerup_select/powerup_variant_database.gd"
 HealthStats="*res://scenes/player/health_stats.gd"
 GameManager="*res://scenes/game_manager.gd"
 

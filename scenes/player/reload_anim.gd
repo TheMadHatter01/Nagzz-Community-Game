@@ -1,5 +1,6 @@
 extends Node2D
 
+signal reload_started
 signal reload_finished
 
 onready var _initial_progress_indicator_x: float = $HorizontalBar.transform.origin.x
@@ -35,6 +36,7 @@ func stop_reload():
 
 func _on_ProgressTween_tween_started(_object: Object, _key: NodePath):
 	visible = true
+	emit_signal("reload_started")
 
 
 func _on_ProgressTween_tween_completed(_object: Object, _key: NodePath):

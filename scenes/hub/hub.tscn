@@ -1,14 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/hub/hub.gd" type="Script" id=1]
 [ext_resource path="res://assets/placeholder/placeholder_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/player_spawn_point/player_spawn_point.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/interactable/interactable.tscn" type="PackedScene" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
-[ext_resource path="res://scenes/hub/area_door.gd" type="Script" id=7]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14, 25 )
+[ext_resource path="res://scenes/areas/area_door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/weapon_pickup/weapon_pickup.tscn" type="PackedScene" id=5]
 
 [node name="Hub" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,23 +19,8 @@ tile_data = PoolIntArray( -262156, 0, 0, -327645, 0, 0, -196620, 0, 0, -262110, 
 [node name="PlayerSpawnPoint" parent="." instance=ExtResource( 3 )]
 position = Vector2( 289, 260 )
 
-[node name="AreaDoor" type="Node2D" parent="."]
-position = Vector2( 605, 279 )
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_group_": true
-}
-area_name = "test_area"
-
-[node name="Sprite" type="Sprite" parent="AreaDoor"]
-scale = Vector2( 0.390625, 0.78125 )
-texture = ExtResource( 5 )
-
-[node name="Interactable" parent="AreaDoor" instance=ExtResource( 4 )]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDoor/Interactable"]
-position = Vector2( 0, -1 )
-shape = SubResource( 1 )
+[node name="AreaDoor" parent="." instance=ExtResource( 4 )]
+position = Vector2( 587, 276 )
 
 [node name="HubAreaLabel" type="RichTextLabel" parent="."]
 margin_left = 366.0
@@ -48,3 +29,6 @@ margin_right = 455.0
 margin_bottom = 91.0
 rect_scale = Vector2( 2, 2 )
 text = "HUB AREA"
+
+[node name="WeaponPickup" parent="." instance=ExtResource( 5 )]
+position = Vector2( 493, 259 )

@@ -41,7 +41,7 @@ func physics_process(delta: float):
 	if (
 		Input.is_action_just_pressed("dash")
 		and _state_machine.current_state != _state_machine.State.DASH
-		and _player.can_dash == true
+		and _player.can_dash
 	):
 		_state_machine.transition_to(_state_machine.State.DASH)
 		_state_machine.get_current_state()._update(delta)

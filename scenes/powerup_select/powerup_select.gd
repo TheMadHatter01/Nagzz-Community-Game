@@ -1,14 +1,13 @@
 extends Control
 
-# powerup_props: PowerupCardProps
-signal powerup_selected(powerup_props)
+signal powerup_selected(powerup_variant)
 
 const PowerupCard := preload("powerup_card.gd")
 # gdlint: ignore=constant-name
 const PowerupCardProps := PowerupCard.PowerupCardProps
 
 # gdlint: ignore=class-variable-name
-var PowerupVariant = PowerupVariantDatabase.PowerupVariant
+var PowerupVariant = PowerupDatabase.PowerupVariant
 
 onready var _cards_container := get_node("%CardsContainer") as HBoxContainer
 onready var _player := find_parent("Player") as Player
@@ -22,8 +21,8 @@ func _ready():
 func _process(_delta):
 	if OS.is_debug_build() and Input.is_action_just_pressed("debug_powerup"):
 		var cards_props := [
-			PowerupVariantDatabase.PowerupVariant.TEST1,
-			PowerupVariantDatabase.PowerupVariant.TEST2,
+			PowerupDatabase.PowerupVariant.TEST1,
+			PowerupDatabase.PowerupVariant.TEST2,
 		]
 
 		show_cards(cards_props)
@@ -54,9 +53,9 @@ func _hide():
 
 # variant: CardVariant
 func _add_card_by_variant(variant: int):
-	assert(variant < PowerupVariantDatabase.powerups.size())
+	assert(variant < PowerupDatabase.PowerupVariant.size())
 	assert(variant >= 0)
-	_add_card(PowerupVariantDatabase.powerups[variant])
+	_add_card(PowerupDatabase.variant_to_props[variant])
 
 
 func _add_card(props: PowerupCardProps):
@@ -64,7 +63,6 @@ func _add_card(props: PowerupCardProps):
 	assert(props.texture != null)
 	assert(props.description != null)
 	assert(props.variant != null)
-	assert(props.on_selected_callback != null)
 
 	var card = _create_card(props)
 
@@ -86,7 +84,6 @@ static func _create_card(card_props: PowerupCardProps) -> PowerupCard:
 	return card
 
 
-func _on_card_selected(card_props: PowerupCardProps):
-	emit_signal("powerup_selected", card_props)
-	card_props.on_selected_callback.call_func(_player)
+func _on_card_selected(variant: int):
 	_hide()
+	emit_signal("powerup_selected", variant)

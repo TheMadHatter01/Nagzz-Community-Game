@@ -24,15 +24,17 @@ const COYOTE_TIME_SECS := 0.1
 const RUN_MAX_SPEED: float = 300.0
 const MAX_Y_VELOCITY := 2500.0
 #Dash consts
-const DASH_SPEED = 1000
-const DASH_DURATION = 0.3
+const DASH_SPEED = 750
+const DASH_DURATION = 0.2
 
 # Consts end
 
 var velocity := Vector2.ZERO
 var dash_delay = 1
-var can_dash = true
+var can_dash = true setget , _get_can_dash
 
+onready var weapon := $Weapon
+onready var powerup_manager := $PowerupManager
 onready var _state_machine := $StateMachine
 onready var _sprite: AnimatedSprite = $AnimatedSprite
 
@@ -43,7 +45,12 @@ func _ready():
 
 func _physics_process(delta: float):
 	_state_machine.update(delta)
+	powerup_manager.update(delta)
 	_sprite.update_animation()
+
+
+func _get_can_dash() -> bool:
+	return can_dash && self.velocity.x != 0
 
 
 func move_player(_delta: float):
