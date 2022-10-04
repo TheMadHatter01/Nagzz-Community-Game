@@ -4,3 +4,5 @@
 
 [node name="Attack" type="Node"]
 script = ExtResource( 1 )
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]

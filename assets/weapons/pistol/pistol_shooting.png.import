@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nag_run_sheet.png-147f32f4b6d68853d38499373ee34523.stex"
+path="res://.import/pistol_shooting.png-75290bdd0186eab72265df05e615d56b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/nag_run_sheet.png"
-dest_files=[ "res://.import/nag_run_sheet.png-147f32f4b6d68853d38499373ee34523.stex" ]
+source_file="res://assets/weapons/pistol/pistol_shooting.png"
+dest_files=[ "res://.import/pistol_shooting.png-75290bdd0186eab72265df05e615d56b.stex" ]
 
 [params]
 

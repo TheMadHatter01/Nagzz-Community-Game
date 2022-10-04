@@ -15,4 +15,4 @@ func _physics_process(_delta):
 	var mouse_pos := _weapon.get_global_mouse_position()
 	_weapon.look_at(mouse_pos)
 	# Mirror weapon sprite if facing left.
-	_weapon.scale.y = -1 if _player.global_position.x - mouse_pos.x > 0 else 1
+	#_weapon.scale.y = -1 if _player.global_position.x - mouse_pos.x > 0 else 1

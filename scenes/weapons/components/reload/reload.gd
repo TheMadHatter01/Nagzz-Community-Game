@@ -14,6 +14,7 @@ var reloading := false
 onready var _player := find_parent("Player") as Player
 onready var _weapon := get_parent() as Node2D
 onready var _ammo := _weapon.get_node("Ammo") as Ammo
+onready var _sprite := _weapon.get_node("AnimatedSprite") as AnimatedSprite
 onready var _reload_indicator := _player.get_node("ReloadIndicator") as ReloadAnim
 onready var _reload_speed_mult := _weapon.get_node("ReloadSpeedMult") as ReloadSpeedMult
 
@@ -47,7 +48,17 @@ func reload():
 		return
 
 	reloading = true
-	_reload_indicator.run_reload(_get_reload_time())
+	var reload_time := _get_reload_time()
+	_reload_indicator.run_reload(reload_time)
+	_play_reload_amination(reload_time)
+
+
+func _play_reload_amination(reload_time: float):
+	_sprite.stop()
+	var frame_count = _sprite.frames.get_frame_count("reloading")
+	_sprite.frames.set_animation_speed("reloading", frame_count / reload_time)
+	_sprite.play("reloading")
+	_sprite.frame = 0
 
 
 func _on_reload_finished():

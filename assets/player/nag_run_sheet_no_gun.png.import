@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nag_run_sheet.png-147f32f4b6d68853d38499373ee34523.stex"
+path="res://.import/nag_run_sheet_no_gun.png-a0acbfc44926153d1f7778458b2bee53.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/nag_run_sheet.png"
-dest_files=[ "res://.import/nag_run_sheet.png-147f32f4b6d68853d38499373ee34523.stex" ]
+source_file="res://assets/player/nag_run_sheet_no_gun.png"
+dest_files=[ "res://.import/nag_run_sheet_no_gun.png-a0acbfc44926153d1f7778458b2bee53.stex" ]
 
 [params]
 

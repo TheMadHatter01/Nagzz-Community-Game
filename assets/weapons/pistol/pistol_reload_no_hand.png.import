@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nag_run_sheet.png-147f32f4b6d68853d38499373ee34523.stex"
+path="res://.import/pistol_reload_no_hand.png-5cd55975260e522ddb84a35c5e48c355.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/nag_run_sheet.png"
-dest_files=[ "res://.import/nag_run_sheet.png-147f32f4b6d68853d38499373ee34523.stex" ]
+source_file="res://assets/weapons/pistol/pistol_reload_no_hand.png"
+dest_files=[ "res://.import/pistol_reload_no_hand.png-5cd55975260e522ddb84a35c5e48c355.stex" ]
 
 [params]
 

@@ -1,0 +1,139 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://assets/weapons/pistol/pistol_shooting.png" type="Texture" id=1]
+[ext_resource path="res://assets/weapons/pistol/pistol_reload.png" type="Texture" id=2]
+[ext_resource path="res://assets/weapons/pistol/sounds/pistol_shot.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/weapons/components/rotate_360/rotate_360.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/weapons/components/multipliers/reload_speed_mult/reload_speed_mult.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/weapons/pistol/pistol_bullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/weapons/components/attack/attack.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/weapons/components/ammo/ammo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/weapons/components/multipliers/fire_rate_mult/fire_rate_mult.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/weapons/components/reload/reload.tscn" type="PackedScene" id=10]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 2 )
+region = Rect2( 27, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 2 )
+region = Rect2( 54, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 2 )
+region = Rect2( 81, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 2 )
+region = Rect2( 108, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 2 )
+region = Rect2( 135, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 2 )
+region = Rect2( 162, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 2 )
+region = Rect2( 189, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 2 )
+region = Rect2( 216, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 2 )
+region = Rect2( 243, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 2 )
+region = Rect2( 270, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 2 )
+region = Rect2( 297, 0, 27, 24 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 46, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 92, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 138, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 184, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 230, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 276, 0, 46, 42 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 322, 0, 46, 42 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": false,
+"name": "default",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "reloading",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": false,
+"name": "shooting",
+"speed": 5.0
+} ]
+
+[node name="Pistol" type="Node2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 10, 0 )
+z_index = 2
+frames = SubResource( 1 )
+animation = "reloading"
+
+[node name="Attack" parent="." instance=ExtResource( 7 )]
+attack_scene = ExtResource( 6 )
+attack_speed = 0.4
+shot_sound = ExtResource( 3 )
+
+[node name="Rotate360" parent="." instance=ExtResource( 4 )]
+
+[node name="AttackPoint" type="Position2D" parent="."]
+position = Vector2( 19, -1 )
+
+[node name="FireRateMult" parent="." instance=ExtResource( 9 )]
+
+[node name="Ammo" parent="." instance=ExtResource( 8 )]
+base_mag_capacity = 5
+ammo = 5
+
+[node name="Reload" parent="." instance=ExtResource( 10 )]
+base_reload_time = 1.0
+
+[node name="ReloadSpeedMult" parent="." instance=ExtResource( 5 )]

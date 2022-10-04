@@ -1,8 +1,9 @@
+tool
 extends Area2D
 
-const SPEED := 1500.0
-
-export var damage: int = 10
+export var texture: StreamTexture setget set_texture
+export var speed: float = 1500.0
+export var damage: float = 10.0
 
 var _velocity: Vector2
 
@@ -12,9 +13,14 @@ func _physics_process(delta: float):
 
 
 func init(initial_position: Vector2, angle: float):
+	$Sprite.set_texture(texture)
 	global_position = initial_position
-	_velocity = Vector2(SPEED, 0).rotated(angle)
+	_velocity = Vector2(speed, 0).rotated(angle)
 	rotation = angle
+
+
+func set_texture(new_texture: StreamTexture):
+	texture = new_texture
 
 
 func _destroy():

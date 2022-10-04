@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://scenes/player/on_ground.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
@@ -17,11 +17,14 @@
 [ext_resource path="res://assets/player/nag_run_sheet.png" type="Texture" id=15]
 [ext_resource path="res://scenes/player/dash.gd" type="Script" id=16]
 [ext_resource path="res://scenes/player/powerup_manager.gd" type="Script" id=17]
+[ext_resource path="res://assets/player/nag_run_sheet_no_gun.png" type="Texture" id=18]
+[ext_resource path="res://assets/player/nag_idle_sheet_no_arm.png" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 19, 26.5 )
+extents = Vector2( 12.5, 20 )
 
 [sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4.72441, 4.6875 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 9 )
@@ -46,6 +49,62 @@ region = Rect2( 120, 0, 30, 42 )
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 9 )
 region = Rect2( 150, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 19 )
+region = Rect2( 30, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 19 )
+region = Rect2( 60, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 19 )
+region = Rect2( 90, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 19 )
+region = Rect2( 120, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 19 )
+region = Rect2( 150, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 18 )
+region = Rect2( 30, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 18 )
+region = Rect2( 60, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 18 )
+region = Rect2( 90, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 18 )
+region = Rect2( 120, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 18 )
+region = Rect2( 150, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 18 )
+region = Rect2( 180, 0, 30, 42 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 18 )
+region = Rect2( 210, 0, 30, 42 )
 
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 15 )
@@ -91,9 +150,19 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"frames": [ SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
+"loop": true,
+"name": "idle_no_arm",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
 "loop": true,
 "name": "run",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": true,
+"name": "run_no_arm",
 "speed": 12.0
 } ]
 
@@ -106,11 +175,12 @@ collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="HitBox" parent="." instance=ExtResource( 13 )]
+visible = false
 collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2( 0, 0.5 )
+position = Vector2( 0.5, 0 )
 shape = SubResource( 7 )
 
 [node name="InteractionBox" type="Area2D" parent="."]
@@ -120,6 +190,7 @@ collision_mask = 6
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2( -9.53674e-07, -1.5 )
 scale = Vector2( 5.08, 6.08 )
 shape = SubResource( 5 )
 
@@ -147,7 +218,7 @@ one_shot = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.5, 0 )
 frames = SubResource( 4 )
-animation = "run"
+animation = "idle_no_arm"
 script = ExtResource( 14 )
 
 [node name="VelocityDirectionDebugArrow" type="Line2D" parent="."]
@@ -158,9 +229,11 @@ points = PoolVector2Array( 0, 0, 29, 0 )
 default_color = Color( 0.733333, 1, 0.4, 1 )
 
 [node name="Weapon" type="Node2D" parent="."]
+position = Vector2( -2, 2 )
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0.5, 0 )
 scale = Vector2( 1.1, 1 )
 shape = SubResource( 6 )
@@ -179,6 +252,7 @@ pause_mode = 2
 visible = false
 
 [node name="ReloadIndicator" type="Node2D" parent="."]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 12 )
 
